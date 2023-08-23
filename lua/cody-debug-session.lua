@@ -13,7 +13,24 @@ M.enable = function()
       if enabled then
         print ("hello")
       end
-    end,})
+  end})
+end
+
+M.disable = function()
+  enabled = false
+  vim.api.nvim_clear_autocmds { group = group }
+end
+
+M.toggle = function(val)
+  if val == nil then
+    return M.toggle(not enabled)
   end
+
+  if val then
+    M.enable()
+  else
+    M.disable()
+  end
+end
 
 return M
